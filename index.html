@@ -16,22 +16,59 @@
 </head>
 <!-- Componente React -->
 <script type="text/babel">
+
+  const { useState } = React;
+
+  // Modal
+  const Modal = ({ title, content, show = false, onClose, onConfirm }) => {
+
+    return show && ReactDOM.createPortal(
+      <div className="modal-container">
+        <div className="modal">
+          <h2>{title}</h2>
+          <p>{content}</p>
+          <div >
+            <button onClick={onConfirm}>Conferma</button>
+            <button onClick={onClose}>Annulla</button>
+          </div>
+        </div>
+      </div>,
+      document.body
+    );
+  };
+
+
   const Animali = () => {
     const { useState } = React;
 
     const animalsChoices = ["Cane", "Gatto", "Pappagallo", "Cavallo", "Panda"];
     const [animals, setAnimals] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+
+    //Apre la modal
+    const MostraModale = () => {
+      setShowModal(true);
+    };
 
     // Funzione per aggiungere casualmente un animale all' array animals
     const AggiungiAnimaleCasuale = () => {
       const numeroCasuale = Math.floor(Math.random() * animalsChoices.length);
       setAnimals([...animals, animalsChoices[numeroCasuale]])
+      setShowModal(false);
     }
 
 
     return (
       <div>
-        <button onClick={AggiungiAnimaleCasuale}> Aggingi animale</button>
+        <button onClick={MostraModale}> Aggingi animale</button>
+
+        <Modal
+          title="Aggiungere un nuovo animale?"
+          content="Vuoi davvero aggiungere un animale casuale alla lista?"
+          show={showModal}
+          onClose={() => setShowModal(false)}
+          onConfirm={AggiungiAnimaleCasuale}
+        />
         <details>
           <summary>Animali</summary>
           <ul>
