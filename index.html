@@ -18,15 +18,26 @@
 <script type="text/babel">
 
   const { useState } = React;
+  const animals = [
+    "Dog",
+    "Cat",
+    "Lion",
+    "Tiger",
+    "Elephant",
 
+  ];
   const Animali = () => {
 
 
     return (
       <div>
         <details>
-          <summary>I miei animali</summary>
-          <p>Elenco animali</p>
+          <summary>Animali</summary>
+          <ul>
+            {animals.map((e, i) => {
+              return <li key={i}>{e}</li>;
+            })}
+          </ul>
         </details>
       </div>
     )
