@@ -16,21 +16,22 @@
 </head>
 <!-- Componente React -->
 <script type="text/babel">
-
-  const { useState } = React;
-  const animals = [
-    "Dog",
-    "Cat",
-    "Lion",
-    "Tiger",
-    "Elephant",
-
-  ];
   const Animali = () => {
+    const { useState } = React;
+
+    const animalsChoices = ["Cane", "Gatto", "Pappagallo", "Cavallo", "Panda"];
+    const [animals, setAnimals] = useState([]);
+
+    // Funzione per aggiungere casualmente un animale all' array animals
+    const AggiungiAnimaleCasuale = () => {
+      const numeroCasuale = Math.floor(Math.random() * animalsChoices.length);
+      setAnimals([...animals, animalsChoices[numeroCasuale]])
+    }
 
 
     return (
       <div>
+        <button onClick={AggiungiAnimaleCasuale}> Aggingi animale</button>
         <details>
           <summary>Animali</summary>
           <ul>
