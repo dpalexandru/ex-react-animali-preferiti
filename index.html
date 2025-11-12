@@ -7,7 +7,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>I miei animali Preferiti</title>
   <link rel="stylesheet" href="style.css">
+  <!-- React -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <!-- ReactDOM -->
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- Babel -->
+  <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
 </head>
+<!-- Componente React -->
+<script type="text/babel">
+
+  const { useState } = React;
+
+  const Animali = () => {
+
+
+    return (
+      <div>
+        <details>
+          <summary>I miei animali</summary>
+          <p>Elenco animali</p>
+        </details>
+      </div>
+    )
+  }
+</script>
+
+<!-- Montaggio componente nella pagina -->
+<script type="text/babel">
+  const { createRoot } = ReactDOM;
+  const listaAnimali = document.querySelector(".lista-animali")
+  const root = createRoot(listaAnimali)
+  root.render(<Animali />)
+
+</script>
+
 
 <body>
   <header>
